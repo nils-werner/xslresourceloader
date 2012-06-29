@@ -15,7 +15,7 @@ The elements themselves are required to belong to a separate XML-Namespace `http
 
 ## Example
 
-Add the following to your XSL to load the Data Source `articles`:
+The following code loads the Data Source `articles` and the Event `comments`:
 
 	<?xml version="1.0" encoding="UTF-8"?>
 	<xsl:stylesheet version="1.0"
@@ -24,6 +24,7 @@ Add the following to your XSL to load the Data Source `articles`:
 		exclude-result-prefixes="res">
 
 	<res:data-source name="articles" />
+	<res:event name="comments" />
 
 	...
 
