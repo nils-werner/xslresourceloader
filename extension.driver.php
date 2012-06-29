@@ -20,7 +20,7 @@
 
 			$events = $context['page_data']['events'];
 			$events = explode(',', $events);
-			$events = array_merge($events, $this->getEventNames());
+			$events = array_merge($events, $this->getResourceNames($context['page_data']['filelocation'], "event"));
 			$events = array_unique($events);
 			$events = implode(',', $events);
 
@@ -28,7 +28,7 @@
 
 			$datasources = $context['page_data']['data_sources'];
 			$datasources = explode(',', $datasources);
-			$datasources = array_merge($datasources, $this->getDSNames());
+			$datasources = array_merge($datasources, $this->getResourceNames($context['page_data']['filelocation'], "data-source"));
 			$datasources = array_unique($datasources);
 			$datasources = implode(',', $datasources);
 
@@ -40,19 +40,18 @@
 
 
 	/*-------------------------------------------------------------------------
-		Events:
+		Resources:
 	-------------------------------------------------------------------------*/
 
-		public function getEventNames() {
-			return explode(',', Symphony::Configuration()->get('event-names', 'globalresourceloader'));
-		}
+		public function getResourceNames($filename, $type) {
+			$xsl = file_get_contents($filename);
+			$xsl = @new SimpleXMLElement($xsl);
+			$xsl->registerXPathNamespace("res", "http://symphony-cms.com/schemas/resources/1.0"); 
+			$resources = array();
+			foreach($xsl->xpath("//res:" . $type . "/@name") as $resource)
+				array_push($resources, (string) $resource['name']);
 
-	/*-------------------------------------------------------------------------
-		Datasources:
-	-------------------------------------------------------------------------*/
-
-		public function getDSNames() {
-			return explode(',', Symphony::Configuration()->get('ds-names', 'globalresourceloader'));
+			return $resources;
 		}
 
 	}
