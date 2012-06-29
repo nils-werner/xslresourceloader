@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension id="globalresourceloader" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
-	<name>Global Resource Loader</name>
-	<description>Saves time attaching resources to pages</description>
-	<repo type="github">https://github.com/symphonists/globalresourceloader</repo>
-	<url type="discuss">http://symphony-cms.com/discuss/thread/599/</url>
+<extension id="resourcesinxsl" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>Resources in XSL</name>
+	<description>Enables attaching Resources to the page XSL</description>
+	<repo type="github">https://github.com/nils-werner/resourcesinxsl</repo>
 	<types>
 		<type>Interface</type>
 	</types>
 	<authors>
+		<author>
+			<name github="nils-werner" symphony="phoque">Nils Werner</name>
+		</author>
 		<author>
 			<name github="symphonists" symphony="community">Symphony Community</name>
 		</author>
@@ -17,10 +19,8 @@
 		</author>
 	</authors>
 	<releases>
-		<release version="1.1" date="2012-05-29" min="2.3">
-			- Update for Symphony 2.3 compatibility
-			- Use new `PageManager` functions
+		<release version="0.1" date="2012-06-29" min="2.3">
+			- Initial release
 		</release>
-		<release version="1.0.6" date="2011-03-01" min="2.2" max="2.2.x" />
 	</releases>
 </extension>
