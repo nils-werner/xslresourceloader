@@ -1,8 +1,6 @@
 <?php
 
-	require_once(TOOLKIT . '/class.datasourcemanager.php');
-
-	class Extension_ResourcesInXSL extends Extension {
+	class Extension_XSLResourceLoader extends Extension {
 	/*-------------------------------------------------------------------------
 		Definition:
 	-------------------------------------------------------------------------*/

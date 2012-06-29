@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension id="resourcesinxsl" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
-	<name>Resources in XSL</name>
+<extension id="xslresourceloader" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>XSL Resource Loader</name>
 	<description>Enables attaching Resources to the page XSL</description>
-	<repo type="github">https://github.com/nils-werner/resourcesinxsl</repo>
+	<repo type="github">https://github.com/nils-werner/xslresourceloader</repo>
 	<types>
 		<type>Interface</type>
 	</types>
