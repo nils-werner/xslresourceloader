@@ -19,6 +19,9 @@
 		</author>
 	</authors>
 	<releases>
+		<release version="0.2" date="2012-06-30" min="2.3">
+			- Fixed issue of empty result breaking `foreach`
+		</release>
 		<release version="0.1" date="2012-06-29" min="2.3">
 			- Initial release
 		</release>

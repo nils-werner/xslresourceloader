@@ -16,11 +16,18 @@
 		}
 
 		public function manipulatePageData($context) {
+
+		// Read File ---------------------------------------------------------
+
+			$xsl = file_get_contents($context['page_data']['filelocation']);
+			$xsl = @new SimpleXMLElement($xsl);
+			$xsl->registerXPathNamespace("res", "http://symphony-cms.com/schemas/resources/1.0"); 
+
 		// Events -------------------------------------------------------------
 
 			$events = $context['page_data']['events'];
 			$events = explode(',', $events);
-			$events = array_merge($events, $this->getResourceNames($context['page_data']['filelocation'], "event"));
+			$events = array_merge($events, $this->getResourceNames($xsl, "event"));
 			$events = array_unique($events);
 			$events = implode(',', $events);
 
@@ -28,7 +35,7 @@
 
 			$datasources = $context['page_data']['data_sources'];
 			$datasources = explode(',', $datasources);
-			$datasources = array_merge($datasources, $this->getResourceNames($context['page_data']['filelocation'], "data-source"));
+			$datasources = array_merge($datasources, $this->getResourceNames($xsl, "data-source"));
 			$datasources = array_unique($datasources);
 			$datasources = implode(',', $datasources);
 
@@ -43,13 +50,14 @@
 		Resources:
 	-------------------------------------------------------------------------*/
 
-		public function getResourceNames($filename, $type) {
-			$xsl = file_get_contents($filename);
-			$xsl = @new SimpleXMLElement($xsl);
-			$xsl->registerXPathNamespace("res", "http://symphony-cms.com/schemas/resources/1.0"); 
+		public function getResourceNames($xsl, $type) {
 			$resources = array();
-			foreach($xsl->xpath("//res:" . $type . "/@name") as $resource)
-				array_push($resources, (string) $resource['name']);
+			$result = $xsl->xpath("//res:" . $type . "/@name");
+			if(is_array($result)) {
+				foreach($result as $resource) {
+					array_push($resources, (string) $resource['name']);
+				}
+			}
 
 			return $resources;
 		}
