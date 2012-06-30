@@ -52,8 +52,12 @@
 
 		public function getResourceNames($xsl, $type) {
 			$resources = array();
-			foreach($xsl->xpath("//res:" . $type . "/@name") as $resource)
-				array_push($resources, (string) $resource['name']);
+			$result = $xsl->xpath("//res:" . $type . "/@name");
+			if(is_array($result)) {
+				foreach($result as $resource) {
+					array_push($resources, (string) $resource['name']);
+				}
+			}
 
 			return $resources;
 		}
